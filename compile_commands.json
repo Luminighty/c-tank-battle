@@ -1,0 +1,16 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-I./include",
+      "-g",
+      "-o",
+      "build/unit_config.o",
+      "src/unit_config.c"
+    ],
+    "directory": "/home/luminight/projects/c/tank-battle",
+    "file": "/home/luminight/projects/c/tank-battle/src/unit_config.c",
+    "output": "/home/luminight/projects/c/tank-battle/build/unit_config.o"
+  }
+]

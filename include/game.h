@@ -1,0 +1,29 @@
+#ifndef GAME_H
+#define GAME_H
+
+#include "gamestate.h"
+#include "map.h"
+#include "raylib.h"
+#include "unit.h"
+
+#define GAME_UNIT_MAX 32
+
+
+typedef struct {
+    Camera2D camera;
+    int unit_count;
+    Unit units[GAME_UNIT_MAX];
+    Map map;
+    GameState gamestate;
+    Vector2 cursor;
+} Game;
+
+
+extern Game game;
+
+
+void game_init();
+void game_destroy();
+void game_add_unit(Unit unit);
+
+#endif // GAME_H
