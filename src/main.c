@@ -4,7 +4,7 @@
 #include "game.h"
 #include "sprite.h"
 #include "update.h"
-#include "render.h"
+#include "render/render.h"
 
 
 int main() {

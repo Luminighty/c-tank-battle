@@ -1,8 +1,15 @@
 #include "unit.h"
-#include "map.h"
+#include "unit_config.h"
 
 Unit unit_create(UnitType type, int owner, int x, int y) {
-	return (Unit){ type, owner, x, y };
+	Unit unit;
+	unit.unit_type = type;
+	unit.owner = owner;
+	unit.x = x;
+	unit.y = y;
+	unit.moved = false;
+	unit.hp = unit_get_hp(type);
+	return unit;
 }
 
 Unit unit_infantry(int owner, int x, int y) {

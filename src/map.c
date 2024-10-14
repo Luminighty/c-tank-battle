@@ -1,4 +1,5 @@
 #include "map.h"
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -12,6 +13,9 @@ Map map_create(int w, int h) {
 	map.w = w;
 	map.h = h;
 	map.tiles = malloc(w * h * sizeof(Tile));
+	printf("map tiles: %p", map.tiles);
+	printf("map size: %ld", w * h * sizeof(Tile));
+	fflush(stdout);
 	map.objects = malloc(w * h * sizeof(MapObject));
 	memset(map.tiles, TILE_NONE, w * h * sizeof(Tile));
 	memset(map.objects, MAPOBJECT_NONE, w * h * sizeof(MapObject));

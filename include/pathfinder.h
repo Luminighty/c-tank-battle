@@ -19,7 +19,7 @@ PathFinderResult pathfinder_run(int start_x, int start_y, int speed, PathFinderG
 PathFinderNode* pathfinder_prev(PathFinderResult* result, PathFinderNode* current);
 PathFinderNode* pathfinder_find(PathFinderResult* result, int x, int y);
 
-void pathfinder_print(PathFinderResult* result);
+void pathfinder_print(const PathFinderResult* result);
 void pathfinder_node_print(const PathFinderNode* result);
 
 void pathfinder_destroy(PathFinderResult* pathfinder_result);

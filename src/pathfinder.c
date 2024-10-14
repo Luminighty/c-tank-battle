@@ -42,7 +42,7 @@ static void pathfinder_queue_insert(PathFinderResult* queue, PathFinderNode node
 
 static PathFinderNode pathfinder_queue_pop(PathFinderResult* queue) {
 	PathFinderNode node = queue->nodes[0];
-	for (int i = 0; i < queue->node_count; i++)
+	for (int i = 0; i < queue->node_count - 1; i++)
 		queue->nodes[i] = queue->nodes[i + 1];
 	queue->node_count--;
 	return node;

@@ -6,11 +6,11 @@
       "-I./include",
       "-g",
       "-o",
-      "build/unit_config.o",
-      "src/unit_config.c"
+      "build/render/render.o",
+      "src/render/render.c"
     ],
     "directory": "/home/luminight/projects/c/tank-battle",
-    "file": "/home/luminight/projects/c/tank-battle/src/unit_config.c",
-    "output": "/home/luminight/projects/c/tank-battle/build/unit_config.o"
+    "file": "/home/luminight/projects/c/tank-battle/src/render/render.c",
+    "output": "/home/luminight/projects/c/tank-battle/build/render/render.o"
   }
 ]

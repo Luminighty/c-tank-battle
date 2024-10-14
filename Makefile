@@ -2,11 +2,12 @@ IDIR=./include
 TARGET=bin/main
 
 CC=gcc
-CFLAGS=-I./include
+CFLAGS=-I$(IDIR)
 LDFLAGS=-Llibs -lraylib -lGL -lpthread -ldl -lm -lX11
 
-DEPS=$(wildcard $(IDIR)/*.h)
-SRCS=$(wildcard src/*.c)
+
+DEPS=$(wildcard $(IDIR)/**/*.h)
+SRCS := $(shell find src -name '*.c')
 OBJS=$(patsubst src/%.c, build/%.o, $(SRCS))
 
 
@@ -20,7 +21,7 @@ release: $(TARGET)
 
 
 build/%.o: src/%.c $(DEPS)
-	mkdir -p build
+	mkdir -p $(dir $@)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
 

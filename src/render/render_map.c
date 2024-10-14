@@ -1,65 +1,20 @@
-#include "render.h"
-#include "game.h"
-#include "gamestate.h"
+#include "render/render_map.h"
 #include "map.h"
-#include "pathfinder.h"
 #include "raylib.h"
+#include "render/render.h"
 #include "sprite.h"
-#include "unit.h"
+#include <stdio.h>
 
 
-#define SPRITE(x, y) ((Rectangle){ (x) * 16, (y) * 16, 16, 16})
-#define UNIT(x) SPRITE(5 + (x), 5)
-
-static const Rectangle UNIT_MAP[];
 static const Rectangle TILE_MAP[];
 static const Rectangle MAPOBJECT_MAP[];
 
-static void render_map(Map* map);
-static void render_unit_selected();
 
-void render() {
-	BeginDrawing();
-	BeginMode2D(game.camera);
-	ClearBackground(RAYWHITE);
-
-	render_map(&game.map);
-
-	switch (game.gamestate.type) {
-	case GAMESTATE_UNIT_SELECTED:
-		render_unit_selected();
-		break;
-	default:
-		break;
-	}
-
-	for (int i = 0; i < game.unit_count; i++) {
-		Unit* unit = &game.units[i];
-		Rectangle source = UNIT_MAP[unit->unit_type];
-		source.y += unit->owner * 16;
-		Vector2 position = { unit->x, unit->y };
-		DrawTextureRec(texture_tilemap, source, position, WHITE);
-	}
-
-	Vector2 cursor_position = { game.cursor.x * 16, game.cursor.y * 16 };
-	DrawTextureRec(texture_tilemap, SPRITE(7, 3), cursor_position, WHITE);
-
-	EndMode2D();
-	EndDrawing();
-}
-
-static void render_unit_selected() {
-	PathFinderResult* result = &game.gamestate.unit_selected.movement_result;
-	for (int i = 0; i < result->node_count; i++) {
-		Vector2 position = { result->nodes[i].x * 16, result->nodes[i].y * 16 };
-		DrawTextureRec(texture_tilemap, SPRITE(7, 4), position, WHITE);
-	}
-}
-
-static void render_map(Map* map) {
+void render_map(Map *map) {
 	for (int x = 0; x < map->w; x++) {
 		for (int y = 0; y < map->h; y++) {
 			int index = y * map->w + x;
+			Tile tile_index = map->tiles[index];
 			Rectangle source = TILE_MAP[map->tiles[index]];
 			Vector2 position = { x * 16, y * 16 };
 			DrawTextureRec(texture_tilemap, source, position, WHITE);
@@ -78,12 +33,6 @@ static void render_map(Map* map) {
 	}
 }
 
-static const Rectangle UNIT_MAP[] = {
-	[UNIT_INFANTRY] = UNIT(11),
-	[UNIT_TANK] = UNIT(3),
-	[UNIT_BOAT] = UNIT(8),
-	[UNIT_PLANE] = UNIT(5),
-};
 
 static const Rectangle TILE_MAP[] = {
     [TILE_GRASS_1] = SPRITE(0, 0),

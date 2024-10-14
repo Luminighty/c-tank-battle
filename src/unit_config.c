@@ -9,9 +9,7 @@ static const int speed_table[] = {
 	[UNIT_BOAT] = 12,
 	[UNIT_ARTILLERY] = 12,
 };
-int unit_get_speed(UnitType unit_type) { 
-	return speed_table[unit_type];
-}
+int unit_get_speed(UnitType unit_type) { return speed_table[unit_type]; }
 
 static const int range_table[] = {
 	[UNIT_INFANTRY] = 3,
@@ -20,6 +18,26 @@ static const int range_table[] = {
 	[UNIT_BOAT] = 5,
 	[UNIT_ARTILLERY] = 9,
 };
+int unit_get_range(UnitType unit_type) { return range_table[unit_type]; }
+
+
+static const int hp_table[] = {
+	[UNIT_INFANTRY] = 30,
+	[UNIT_TANK] = 40,
+	[UNIT_PLANE] = 20,
+	[UNIT_BOAT] = 50,
+	[UNIT_ARTILLERY] = 30,
+};
+int unit_get_hp(UnitType unit_type) { return hp_table[unit_type]; }
+
+static const int power_table[] = {
+	[UNIT_INFANTRY] = 10,
+	[UNIT_TANK] = 15,
+	[UNIT_PLANE] = 20,
+	[UNIT_BOAT] = 15,
+	[UNIT_ARTILLERY] = 20,
+};
+int unit_get_power(UnitType unit_type) { return power_table[unit_type]; }
 
 static const int unit_tile_weight_table[][6] = {
 	[UNIT_INFANTRY] = {
