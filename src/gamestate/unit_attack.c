@@ -22,7 +22,6 @@ static void gamestate_unit_attack_leave() {
 static int attack_get_weight(int x, int y, void* _context) {
 	if (is_occupied(x, y))
 		return 1;
-	AttackPathFinderContext* context = _context;
 	return 1;
 }
 
@@ -76,6 +75,11 @@ void gamestate_unit_attack_update() {
 		printf("Attacking %d\n", targeted_unit);
 		fflush(stdout);
 		game.units[targeted_unit].hp -= unit_get_power(game.units[gamestate->unit].unit_type);
+
+		if (game.units[targeted_unit].hp <= 0) {
+			remove_unit(targeted_unit);
+		}
+
 		// Do fancy stuff
 		gamestate_unit_attack_leave();
 	}

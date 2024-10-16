@@ -1,4 +1,5 @@
 #include "unit.h"
+#include "game.h"
 #include "unit_config.h"
 
 Unit unit_create(UnitType type, int owner, int x, int y) {
@@ -27,3 +28,4 @@ Unit unit_tank(int owner, int x, int y) {
 Unit unit_boat(int owner, int x, int y) {
 	return unit_create(UNIT_BOAT, owner, x, y);
 }
+

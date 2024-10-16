@@ -23,13 +23,13 @@ static const Color player_color[] = {
 	{ 230, 130, 0, 255 }
 };
 
-static void draw_outlined_text(const char* text, int pos_x, int pos_y, int font_size, Color color, int outline_size, Color outline_color) {
-	DrawText(text, pos_x - outline_size, pos_y - outline_size, font_size, outline_color);
-	DrawText(text, pos_x + outline_size, pos_y - outline_size, font_size, outline_color);
-	DrawText(text, pos_x - outline_size, pos_y + outline_size, font_size, outline_color);
-	DrawText(text, pos_x + outline_size, pos_y + outline_size, font_size, outline_color);
-	DrawText(text, pos_x, pos_y, font_size, color);
-}
+static const Color player_bright_color[] = {
+	GRAY,
+	GREEN,
+	SKYBLUE,
+	{ 255, 100, 100, 255 },
+	{ 255, 200, 150, 255 }
+};
 
 static void render_units() {
 	for (int i = 0; i < game.unit_count; i++) {
@@ -66,6 +66,12 @@ void render() {
 	// Draw UI
 	DrawText(TextFormat("PLAYER %01i", game.current_player), 10, 10, 20, player_color[game.current_player]);
 
+	if (game.gamestate.type == GAMESTATE_GAMEOVER) {
+		int winner = game.gamestate.gameover.winner;
+		DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), (Color){0, 0, 0, 150});
+		DrawText(TextFormat("GAME OVER\nPLAYER %01i WINS", winner), 8*16, 8*16, 40, player_bright_color[winner]);
+	}
+
 	EndDrawing();
 }
 
@@ -98,16 +104,17 @@ static void render_unit_attack() {
 	}
 }
 
-#define FN_CASE(value, fn) case value: {fn;} break;
 
 static void render_gamestate() {
+	#define CASE(value, fn) case value: {fn;} break;
 	switch (game.gamestate.type) {
-		FN_CASE(GAMESTATE_UNIT_SELECTED, render_unit_selected())
-		FN_CASE(GAMESTATE_UNIT_ATTACK, render_unit_attack())
+		CASE(GAMESTATE_UNIT_SELECTED, render_unit_selected())
+		CASE(GAMESTATE_UNIT_ATTACK, render_unit_attack())
 		default:
 			render_units();
 			break;
 	}
+	#undef CASE
 }
 
 static const Rectangle UNIT_MAP[] = {

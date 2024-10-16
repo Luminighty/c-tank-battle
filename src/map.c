@@ -13,8 +13,6 @@ Map map_create(int w, int h) {
 	map.w = w;
 	map.h = h;
 	map.tiles = malloc(w * h * sizeof(Tile));
-	printf("map tiles: %p", map.tiles);
-	printf("map size: %ld", w * h * sizeof(Tile));
 	fflush(stdout);
 	map.objects = malloc(w * h * sizeof(MapObject));
 	memset(map.tiles, TILE_NONE, w * h * sizeof(Tile));
@@ -56,6 +54,7 @@ TileType map_get_tile(Map *map, int x, int y) {
 	case MAPOBJECT_HILL:
 		return TILETYPE_HILL;
 	case MAPOBJECT_NONE:
+	case MAPOBJECT_SIZE:
 	case MAPOBJECT_LIGHTS:
 		break;
 	case MAPOBJECT_ROAD_UNIT:
@@ -118,6 +117,7 @@ TileType map_get_tile(Map *map, int x, int y) {
 		return TILETYPE_WATER;
 	
 	case TILE_NONE:
+	case TILE_SIZE:
 	default:
 		return TILETYPE_BLOCK;
 	}

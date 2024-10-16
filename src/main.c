@@ -8,7 +8,7 @@
 
 
 int main() {
-	InitWindow(500, 500, "Hello World");
+	InitWindow(16*30*2, 16*17*2, "Tank Battle");
 	SetTargetFPS(60);
 
 	texture_tilemap = LoadTexture("assets/tilemap.png");

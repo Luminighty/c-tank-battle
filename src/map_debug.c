@@ -34,7 +34,6 @@ Map map_debug_create() {
 
 	const int w = 16;
 	const int h = 16;
-	const int size = w * h;
 	Map map = map_create(w, h);
 
 	FILL(map_set_tile, 0, 0, 15, 15, tile_grass());

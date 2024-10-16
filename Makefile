@@ -13,10 +13,10 @@ OBJS=$(patsubst src/%.c, build/%.o, $(SRCS))
 
 .PHONY: debug release clean
 
-debug: CFLAGS += -g
+debug: CFLAGS += -g -O0 -Wall -Wextra
 debug: $(TARGET)
 
-release: CFLAGS += -O2
+release: CFLAGS += -O2 -DNDEBUG
 release: $(TARGET)
 
 
@@ -27,6 +27,7 @@ build/%.o: src/%.c $(DEPS)
 
 $(TARGET): $(OBJS)
 	mkdir -p bin
+	cp -r assets bin/
 	$(CC) -o $@ $^ $(LDFLAGS) $(CFLAGS)
 
 

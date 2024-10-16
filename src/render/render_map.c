@@ -15,7 +15,7 @@ void render_map(Map *map) {
 		for (int y = 0; y < map->h; y++) {
 			int index = y * map->w + x;
 			Tile tile_index = map->tiles[index];
-			Rectangle source = TILE_MAP[map->tiles[index]];
+			Rectangle source = TILE_MAP[tile_index ];
 			Vector2 position = { x * 16, y * 16 };
 			DrawTextureRec(texture_tilemap, source, position, WHITE);
 		}
@@ -49,8 +49,8 @@ static const Rectangle TILE_MAP[] = {
     [TILE_RIVER_WATER_H] = SPRITE(2, 4),
     [TILE_WATER_RIVER_H] = SPRITE(0, 4),
 
-    [TILE_RIVER_WATER_V] = SPRITE(3, 2),
-    [TILE_WATER_RIVER_V] = SPRITE(3, 4),
+    [TILE_RIVER_WATER_V] = SPRITE(3, 4),
+    [TILE_WATER_RIVER_V] = SPRITE(3, 2),
 
     [TILE_WATER_DR] = SPRITE(0, 1),
     [TILE_WATER_LDR] = SPRITE(1, 1),
@@ -63,8 +63,8 @@ static const Rectangle TILE_MAP[] = {
     [TILE_WATER_UL] = SPRITE(2, 3),
     [TILE_WATER_CORNER_UL] = SPRITE(0, 5),
     [TILE_WATER_CORNER_UR] = SPRITE(1, 5),
-    [TILE_WATER_CORNER_DL] = SPRITE(2, 5),
-    [TILE_WATER_CORNER_DR] = SPRITE(3, 5),
+    [TILE_WATER_CORNER_DR] = SPRITE(2, 5),
+    [TILE_WATER_CORNER_DL] = SPRITE(3, 5),
 };
 
 static const Rectangle MAPOBJECT_MAP[] = {

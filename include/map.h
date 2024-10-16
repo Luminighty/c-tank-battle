@@ -34,7 +34,7 @@ typedef enum {
     TILE_WATER_CORNER_UR,
     TILE_WATER_CORNER_DL,
     TILE_WATER_CORNER_DR,
-
+    TILE_SIZE,
 } Tile;
 
 typedef enum {
@@ -78,6 +78,7 @@ typedef enum {
     MAPOBJECT_BRIDGE_H1,
     MAPOBJECT_BRIDGE_H2,
     MAPOBJECT_BRIDGE_V,
+    MAPOBJECT_SIZE,
 } MapObject;
 
 typedef struct  {

@@ -7,8 +7,8 @@
 static PathFinderResult pathfinder_result_create() {
 	PathFinderResult result;
 	result.node_count = 0;
-	result.node_capacity = 16;
-	result.nodes = malloc(16 * sizeof(PathFinderNode));
+	result.node_capacity = 64;
+	result.nodes = malloc(64 * sizeof(PathFinderNode));
 	if (!result.nodes) {
 		printf("malloc error at pathfinder_result_push :(");
 		exit(1);
@@ -19,6 +19,7 @@ static PathFinderResult pathfinder_result_create() {
 static void pathfinder_result_push(PathFinderResult* result, PathFinderNode node) {
 	if (result->node_capacity <= result->node_count) {
 		result->node_capacity *= 2;
+		printf("Reallocing pathfinder to %d\n", result->node_capacity);
 		PathFinderNode* new_nodes = realloc(result->nodes, result->node_capacity * sizeof(PathFinderNode));
 		if (!new_nodes) {
 			printf("realloc error at pathfinder_result_push :(");

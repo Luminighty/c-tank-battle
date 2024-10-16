@@ -1,6 +1,7 @@
 #include "gamestate.h"
 
 #include "game.h"
+#include "gamestate/gameover.h"
 #include "gamestate/idle.h"
 #include "gamestate/unit_attack.h"
 #include "gamestate/unit_selected.h"
@@ -9,20 +10,15 @@
 
 
 void gamestate_update() {
+	#define CASE(state, fn) case state: {fn;} break;
 	switch (game.gamestate.type) {
-	case GAMESTATE_IDLE:
-		gamestate_idle_update();
-		break;
-	case GAMESTATE_UNIT_SELECTED:
-		gamestate_unit_selected_update();
-		break;
-	case GAMESTATE_UNIT_MOVE:
-		gamestate_unit_move_update();
-		break;
-	case GAMESTATE_UNIT_ATTACK:
-		gamestate_unit_attack_update();
-		break;
+	CASE(GAMESTATE_IDLE, gamestate_idle_update())
+	CASE(GAMESTATE_UNIT_SELECTED, gamestate_unit_selected_update())
+	CASE(GAMESTATE_UNIT_MOVE, gamestate_unit_move_update())
+	CASE(GAMESTATE_UNIT_ATTACK, gamestate_unit_attack_update())
+	CASE(GAMESTATE_GAMEOVER, gamestate_gameover_update())
 	}
+	#undef CASE
 }
 
 
