@@ -3,7 +3,15 @@ TARGET=bin/main
 
 CC=gcc
 CFLAGS=-I$(IDIR)
-LDFLAGS=-Llibs -lraylib -lGL -lpthread -ldl -lm -lX11
+LDFLAGS=-Llibs -lraylib -lpthread -lm
+LDFLAGS_WIN=-lgdi32 -lwinmm
+LDFLAGS_UNIX=-lGL -ldl -lX11
+
+ifeq ($(OS),Windows_NT)
+	LDFLAGS += $(LDFLAGS_WIN)
+else
+	LDFLAGS += $(LDFLAGS_UNIX)
+endif
 
 
 DEPS=$(wildcard $(IDIR)/**/*.h)
