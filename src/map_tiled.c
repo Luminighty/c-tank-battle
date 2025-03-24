@@ -15,7 +15,6 @@ static void load_unit(Map* map, int x, int y, TILED_GUID id);
 
 static TILED_GUID TILE_MAP[];
 static TILED_GUID MAPOBJECT_MAP[];
-static TILED_GUID UNIT_MAP[];
 
 
 static const TILED_GUID TILED_FLIP_H =  0x80000000;
@@ -89,12 +88,7 @@ static void load_unit(Map* map, int x, int y, TILED_GUID id) {
 		return;
 	int owner = id_y - 5;
 	TILED_GUID unit_type = id_x - 5;
-	for (int i = 0; i < UNIT_SIZE; i++) {
-		if (UNIT_MAP[i] != unit_type)
-			continue;
-		game_add_unit(unit_create(i, owner, x * 16, y * 16));
-		return;
-	}
+	game_add_unit(unit_create(unit_type, owner, x * 16, y * 16));
 }
 
 
@@ -140,6 +134,8 @@ static TILED_GUID MAPOBJECT_MAP[] = {
 	[MAPOBJECT_BLOCKADE_H] = 24,
 	[MAPOBJECT_BLOCKADE_V] = 26,
 	[MAPOBJECT_LIGHTS] = 8,
+	[MAPOBJECT_CAR1] = 7,
+	[MAPOBJECT_CAR2] = 25,
 
 	[MAPOBJECT_ROAD_UNIT] = 109,
 	[MAPOBJECT_ROAD_R] = 110,
@@ -164,13 +160,5 @@ static TILED_GUID MAPOBJECT_MAP[] = {
 	[MAPOBJECT_BRIDGE_H1] = 131,
 	[MAPOBJECT_BRIDGE_H2] = 149,
 	[MAPOBJECT_BRIDGE_V] = 167,
-};
-
-static TILED_GUID UNIT_MAP[] = {
-	[UNIT_INFANTRY] = 11,
-	[UNIT_TANK] = 3,
-	[UNIT_PLANE] = 5,
-	[UNIT_BOAT] = 8,
-	[UNIT_ARTILLERY] = 4,
 };
 

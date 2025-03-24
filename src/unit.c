@@ -1,8 +1,9 @@
 #include "unit.h"
 #include "game.h"
 #include "unit_config.h"
+#include "vector.h"
 
-Unit unit_create(UnitType type, int owner, int x, int y) {
+Unit unit_create(UnitType type, short owner, short x, short y) {
 	Unit unit;
 	unit.unit_type = type;
 	unit.owner = owner;
@@ -13,19 +14,4 @@ Unit unit_create(UnitType type, int owner, int x, int y) {
 	return unit;
 }
 
-Unit unit_infantry(int owner, int x, int y) {
-	return unit_create(UNIT_INFANTRY, owner, x, y);
-}
-
-Unit unit_plane(int owner, int x, int y) {
-	return unit_create(UNIT_PLANE, owner, x, y);
-}
-
-Unit unit_tank(int owner, int x, int y) {
-	return unit_create(UNIT_TANK, owner, x, y);
-}
-
-Unit unit_boat(int owner, int x, int y) {
-	return unit_create(UNIT_BOAT, owner, x, y);
-}
-
+VECTOR_IMPL(UnitVec, Unit, unit_vec, 64);

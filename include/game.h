@@ -17,12 +17,18 @@ typedef struct {
     int current_player;
     int unit_count;
     Unit units[GAME_UNIT_MAX];
+    UnitVec units_2;
     Map map;
     GameState gamestate;
 } Game;
 
 
 extern Game game;
+
+void test() {
+    game.units_2 = unit_vec_create();
+    unit_vec_add(&game.units_2, unit_create(UNIT_INFANTRY, 1, 16, 16));
+}
 
 
 void game_init();

@@ -5,12 +5,15 @@
       "-c",
       "-I./include",
       "-g",
+      "-O0",
+      "-Wall",
+      "-Wextra",
       "-o",
-      "build/render/render.o",
-      "src/render/render.c"
+      "build/unit.o",
+      "src/unit.c"
     ],
     "directory": "/home/luminight/projects/c/tank-battle",
-    "file": "/home/luminight/projects/c/tank-battle/src/render/render.c",
-    "output": "/home/luminight/projects/c/tank-battle/build/render/render.o"
+    "file": "/home/luminight/projects/c/tank-battle/src/unit.c",
+    "output": "/home/luminight/projects/c/tank-battle/build/unit.o"
   }
 ]

@@ -1,14 +1,24 @@
 #ifndef UNIT_H
 #define UNIT_H
 
-
+#include "vector.h"
 #include <stdbool.h>
+
+
 typedef enum {
-    UNIT_INFANTRY,
+    UNIT_TRUCK,
+    UNIT_TRUCK_B,
+    UNIT_APC,
     UNIT_TANK,
-    UNIT_PLANE,
-    UNIT_BOAT,
     UNIT_ARTILLERY,
+    UNIT_BOMBER,
+    UNIT_BCOPTER,
+    UNIT_TCOPTER,
+    UNIT_LANDER,
+    UNIT_BATTLESHIP,
+    UNIT_SUB,
+    UNIT_INFANTRY,
+    UNIT_MECH,
     UNIT_SIZE,
 } UnitType;
 
@@ -16,18 +26,15 @@ typedef enum {
 typedef struct {
     UnitType unit_type;
     bool moved;
-    int owner;
-    int x;
-    int y;
-    int hp;
+    short owner;
+    short x;
+    short y;
+    short hp;
 } Unit;
 
 
-Unit unit_create(UnitType type, int owner, int x, int y);
-Unit unit_infantry(int owner, int x, int y);
-Unit unit_tank(int owner, int x, int y);
-Unit unit_plane(int owner, int x, int y);
-Unit unit_boat(int owner, int x, int y);
+Unit unit_create(UnitType type, short owner, short x, short y);
 
+VECTOR(UnitVec, Unit, unit_vec);
 
 #endif // UNIT_H

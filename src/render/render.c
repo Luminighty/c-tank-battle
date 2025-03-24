@@ -7,10 +7,7 @@
 #include "sprite.h"
 #include "unit.h"
 #include "unit_config.h"
-#include <stdio.h>
 
-
-static const Rectangle UNIT_MAP[];
 
 static void render_gamestate();
 
@@ -34,7 +31,7 @@ static const Color player_bright_color[] = {
 static void render_units() {
 	for (int i = 0; i < game.unit_count; i++) {
 		Unit* unit = &game.units[i];
-		Rectangle source = UNIT_MAP[unit->unit_type];
+		Rectangle source = UNIT(unit->unit_type);
 		source.y += unit->owner * 16;
 		Vector2 position = { unit->x, unit->y };
 		Color color = unit->moved ? GRAY : WHITE;
@@ -117,9 +114,3 @@ static void render_gamestate() {
 	#undef CASE
 }
 
-static const Rectangle UNIT_MAP[] = {
-	[UNIT_INFANTRY] = UNIT(11),
-	[UNIT_TANK] = UNIT(3),
-	[UNIT_BOAT] = UNIT(8),
-	[UNIT_PLANE] = UNIT(5),
-};
